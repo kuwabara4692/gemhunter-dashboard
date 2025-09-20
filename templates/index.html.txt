@@ -1,37 +1,124 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>GemHunter Terrain Map Generator</title>
-    <style>
-        body {
-            background-color: #2f2f2f;
-            color: white;
-            font-family: Helvetica;
-            text-align: center;
-            padding: 40px;
-        }
-        input, button {
-            padding: 10px;
-            margin: 10px;
-        }
-        .link {
-            color: lightblue;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <title>GemHunter Terrain Map Generator</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: url('{{ url_for('static', filename='images/gemstone-bg.jpg') }}') no-repeat center center fixed;
+      background-size: cover;
+      font-family: 'Trebuchet MS', sans-serif;
+      color: #f5f5dc;
+      text-align: center;
+    }
+
+    .overlay {
+      background-color: rgba(47, 47, 47, 0.85);
+      padding: 40px;
+      min-height: 100vh;
+    }
+
+    h1 {
+      font-family: 'Copperplate', fantasy;
+      font-size: 2.5em;
+      color: #d0f0ff;
+      text-shadow: 0 0 10px #00ffff;
+    }
+
+    .sparkles {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      background: url('{{ url_for('static', filename='images/sparkles.gif') }}') repeat;
+      opacity: 0.3;
+      z-index: 0;
+    }
+
+    form, .content {
+      position: relative;
+      z-index: 1;
+    }
+
+    input[type="file"], button {
+      padding: 10px;
+      margin: 10px;
+      border-radius: 8px;
+      font-size: 1em;
+    }
+
+    button {
+      background-color: #4682b4;
+      color: white;
+      border: none;
+      box-shadow: 0 0 10px #00ffff;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #5f9ea0;
+      box-shadow: 0 0 20px #00ffff;
+    }
+
+    .loader {
+      display: none;
+      margin: 20px auto;
+      border: 6px solid #f3f3f3;
+      border-top: 6px solid #00ffff;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    a {
+      color: #aeeeee;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
 </head>
 <body>
-    <h1>🪨 GemHunter Terrain Map Generator</h1>
-    <p>Upload a DEM file to generate terrain maps with slope, aspect, and contours.</p>
-    <form method="POST" enctype="multipart/form-data">
+  <div class="sparkles"></div>
+  <div class="overlay">
+    <div class="content">
+      <h1>🪨 GemHunter Terrain Map Generator</h1>
+      <p>Upload a DEM file to generate terrain maps with slope, aspect, and contours.</p>
+
+      <form method="POST" enctype="multipart/form-data" onsubmit="showLoader()">
         <input type="file" name="dem" accept=".tif" required>
         <br>
         <button type="submit">Generate Map</button>
-    </form>
+      </form>
 
-    {% if download_link %}
+      <div class="loader" id="loader"></div>
+
+      {% if download_link %}
         <p>✅ Map generated! <a href="{{ download_link }}">Download your map</a></p>
-    {% endif %}
+      {% endif %}
 
-    <p>Need a DEM? Get one from the <a class="link" href="https://apps.nationalmap.gov/downloader/" target="_blank">USGS National Map Downloader</a></p>
+      <p>Need a DEM? Get one from the <a href="https://apps.nationalmap.gov/downloader/" target="_blank">USGS National Map Downloader</a></p>
+    </div>
+  </div>
+
+  <script>
+    function showLoader() {
+      document.getElementById('loader').style.display = 'block';
+    }
+  </script>
 </body>
 </html>
