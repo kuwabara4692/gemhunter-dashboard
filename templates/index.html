@@ -24,7 +24,13 @@
         <p>✅ Map generated! <a href="{{ download_link }}">Download your map</a></p>
       {% endif %}
 
-      <p>Need a DEM? Get one from the <a href="https://apps.nationalmap.gov/downloader/" target="_blank">USGS National Map Downloader</a></p>
+      <p>
+        Need a DEM? Get one from the
+        <a href="https://apps.nationalmap.gov/downloader/" target="_blank">USGS National Map Downloader</a>
+      </p>
+
+      <!-- Gemstone image below the link -->
+      <img src="{{ url_for('static', filename='images/gemstone-bg.jpg') }}" alt="Gemstone background" class="gemstone-img">
     </div>
   </div>
 
