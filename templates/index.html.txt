@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>GemHunter Terrain Map Generator</title>
+    <style>
+        body {
+            background-color: #2f2f2f;
+            color: white;
+            font-family: Helvetica;
+            text-align: center;
+            padding: 40px;
+        }
+        input, button {
+            padding: 10px;
+            margin: 10px;
+        }
+        .link {
+            color: lightblue;
+        }
+    </style>
+</head>
+<body>
+    <h1>🪨 GemHunter Terrain Map Generator</h1>
+    <p>Upload a DEM file to generate terrain maps with slope, aspect, and contours.</p>
+    <form method="POST" enctype="multipart/form-data">
+        <input type="file" name="dem" accept=".tif" required>
+        <br>
+        <button type="submit">Generate Map</button>
+    </form>
+
+    {% if download_link %}
+        <p>✅ Map generated! <a href="{{ download_link }}">Download your map</a></p>
+    {% endif %}
+
+    <p>Need a DEM? Get one from the <a class="link" href="https://apps.nationalmap.gov/downloader/" target="_blank">USGS National Map Downloader</a></p>
+</body>
+</html>

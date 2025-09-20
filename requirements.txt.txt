@@ -1,0 +1,6 @@
+flask
+rasterio
+matplotlib
+numpy
+matplotlib-scalebar
+gunicorn
