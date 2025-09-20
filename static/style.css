@@ -2,7 +2,7 @@
 body {
   margin: 0;
   padding: 0;
-  background: url('../images/ocean-topo-bg.jpg') no-repeat center center fixed;
+  background: url('/static/images/ocean-topo-bg.jpg') no-repeat center center fixed;
   background-size: cover;
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;
   color: #f5f5dc;
@@ -13,18 +13,6 @@ body {
   background-color: rgba(47, 47, 47, 0.85);
   padding: 40px;
   min-height: 100vh;
-}
-
-.sparkles {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  background: url('../images/sparkles.gif') repeat;
-  opacity: 0.3;
-  z-index: 0;
 }
 
 form, .content {
